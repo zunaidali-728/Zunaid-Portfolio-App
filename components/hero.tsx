@@ -123,21 +123,6 @@ Download Resume
 
 </motion.a>
 
-
-<motion.a
-
-href="https://github.com/zunaidali-728"
-target="_blank"
-
-whileHover={{scale:1.1}}
-
-className="text-blue-400 underline text-lg"
->
-
-View My GitHub
-
-</motion.a>
-
 </div>
 
 </section>
