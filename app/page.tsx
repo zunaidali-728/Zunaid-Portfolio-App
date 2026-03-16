@@ -1,7 +1,7 @@
 import CursorGlow from "../components/CursorGlow"
 import ParticlesBackground from "../components/ParticlesBackground"
 import Navbar from "../components/Navbar"
-import Hero from "../components/hero"
+import Hero from "../components/Hero"
 import About from "../components/About"
 import Skills from "../components/Skills"
 import Projects from "../components/Projects"
@@ -17,7 +17,6 @@ export default function Home() {
 
 
       <CursorGlow />
-
       <ParticlesBackground />
 
       <Navbar />

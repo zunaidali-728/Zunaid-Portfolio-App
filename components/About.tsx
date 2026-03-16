@@ -1,37 +1,19 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FaCode, FaLaptopCode } from "react-icons/fa"
 
 export default function About(){
 
 return(
 
-<section id="about" className="py-32 text-white relative overflow-hidden">
+<section id="about" className="py-32 text-white">
 
+<div className="max-w-5xl mx-auto px-6 text-center">
 
-{/* floating icons */}
-
-<motion.div
-animate={{y:[0,20,0]}}
-transition={{repeat:Infinity,duration:6}}
-className="absolute left-10 top-20 text-blue-400 text-3xl opacity-30"
->
-<FaCode/>
-</motion.div>
-
-<motion.div
-animate={{y:[0,-20,0]}}
-transition={{repeat:Infinity,duration:5}}
-className="absolute right-10 bottom-20 text-purple-400 text-3xl opacity-30"
->
-<FaLaptopCode/>
-</motion.div>
-
-
-{/* section title */}
+{/* title */}
 
 <motion.h2
+
 initial={{opacity:0,y:40}}
 whileInView={{opacity:1,y:0}}
 transition={{duration:0.6}}
@@ -47,33 +29,70 @@ About Me
 </motion.h2>
 
 
-{/* about card */}
+{/* animated card */}
 
 <motion.div
-initial={{opacity:0,y:60}}
-whileInView={{opacity:1,y:0}}
 
-whileHover={{scale:1.03}}
+initial={{opacity:0,scale:0.9}}
+whileInView={{opacity:1,scale:1}}
+transition={{duration:1}}
 
-className="max-w-4xl mx-auto backdrop-blur-xl bg-white/5
-border border-white/10 p-10 rounded-xl
-shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]
-transition text-center"
+className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-10 relative overflow-hidden"
+
 >
 
-<p className="text-lg leading-relaxed text-gray-300">
+{/* glow effect */}
 
-I am a <span className="text-blue-400 font-semibold">Software Engineer</span> passionate about building scalable applications and solving real-world problems.
+<div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-xl opacity-30"></div>
 
-My experience includes <span className="text-purple-400 font-semibold">Java backend development</span>, <span className="text-pink-400 font-semibold">Spring Boot</span>, <span className="text-blue-400 font-semibold">REST APIs</span>, and <span className="text-cyan-400 font-semibold">Android application development</span>.
+
+{/* animated text */}
+
+<motion.p
+
+initial={{opacity:0,y:30}}
+whileInView={{opacity:1,y:0}}
+transition={{duration:1.2}}
+
+className="text-lg leading-relaxed relative z-10"
+
+>
+
+I am a{" "}
+
+<span className="text-blue-400 font-semibold hover:text-blue-300 transition">
+Software Engineer
+</span>{" "}
+passionate about building scalable applications and solving real-world problems.  
+
+My experience includes{" "}
+
+<span className="text-purple-400 font-semibold hover:text-purple-300 transition">
+Java backend development
+</span>,{" "}
+
+<span className="text-pink-400 font-semibold hover:text-pink-300 transition">
+Spring Boot
+</span>,{" "}
+
+<span className="text-blue-400 font-semibold hover:text-blue-300 transition">
+REST APIs
+</span>, and{" "}
+
+<span className="text-cyan-400 font-semibold hover:text-cyan-300 transition">
+Android application development
+</span>.  
 
 I enjoy designing efficient systems, optimizing databases, and building modern applications that deliver real value.
 
-</p>
+</motion.p>
 
 </motion.div>
+
+</div>
 
 </section>
 
 )
+
 }

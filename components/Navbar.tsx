@@ -1,21 +1,52 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const menu = [
 { name:"Home", link:"#hero" },
 { name:"About", link:"#about" },
-{ name:"Skills", link:"#skills" },
-{ name:"Education", link:"#education" },
 { name:"Experience", link:"#experience" },
+{ name:"Skills", link:"#skills" },
 { name:"Projects", link:"#projects" },
+{ name:"Education", link:"#education" },
 { name:"Contact", link:"#contact" }
 ]
 
 export default function Navbar(){
 
 const [active,setActive] = useState("Home")
+
+/* detect active section while scrolling */
+
+useEffect(()=>{
+
+const handleScroll = () => {
+
+const sections = menu.map(item =>
+document.querySelector(item.link)
+)
+
+sections.forEach((section,index)=>{
+
+if(!section) return
+
+const rect = section.getBoundingClientRect()
+
+if(rect.top <= 120 && rect.bottom >= 120){
+setActive(menu[index].name)
+}
+
+})
+
+}
+
+window.addEventListener("scroll",handleScroll)
+
+return ()=> window.removeEventListener("scroll",handleScroll)
+
+},[])
+
 
 return(
 
@@ -28,6 +59,7 @@ className="fixed top-0 w-full z-50 backdrop-blur-xl bg-black/30 border-b border-
 
 <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 text-white">
 
+
 {/* logo */}
 
 <motion.h1
@@ -35,8 +67,10 @@ initial={{opacity:0, y:-20}}
 animate={{opacity:1, y:0}}
 transition={{duration:0.8}}
 
-whileHover={{
-scale:1.08
+whileHover={{scale:1.08}}
+
+onClick={()=>{
+window.scrollTo({top:0,behavior:"smooth"})
 }}
 
 className="relative text-2xl font-bold 
@@ -50,14 +84,9 @@ cursor-pointer"
 
 <motion.span
 key={index}
-
 initial={{opacity:0,y:10}}
 animate={{opacity:1,y:0}}
-
-transition={{
-delay:index*0.05
-}}
-
+transition={{delay:index*0.05}}
 className="inline-block"
 >
 
@@ -84,7 +113,10 @@ onClick={()=>setActive(item.name)}
 
 whileHover={{scale:1.15}}
 
-className="relative text-sm tracking-wide cursor-pointer"
+className={`relative text-sm tracking-wide cursor-pointer transition-colors duration-300
+${active === item.name ? "text-blue-400":"text-white"}
+`}
+
 >
 
 {item.name}
@@ -95,7 +127,8 @@ className="relative text-sm tracking-wide cursor-pointer"
 
 <motion.span
 layoutId="menuUnderline"
-className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-blue-400 to-purple-400"
+className="absolute left-0 -bottom-1 w-full h-[2px] 
+bg-gradient-to-r from-blue-400 to-purple-400"
 />
 
 )}
